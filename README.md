@@ -1,6 +1,6 @@
 # _Pig Latin_
 
-#### By _**Jason Macie & ** DJ Zevenbergen Julia Seidman_
+#### By _**Jason Macie & DJ Zevenbergen & Julia Seidman**_
 ##### _Last Updated April 1st, 2020_
 
 ## Description
@@ -10,13 +10,17 @@ _This page is a pig latin translator_
 ## Specs
 
 * Words beginning with a vowel = "way" at end of word 
-  * ex: our = ourway
+  * example input: our
+  * example output: ourway
 * Words begining with a consonant = move all consecutive cons to end and add "ay"
-  * ex: bring = ingbray
+  * example input: bring
+  * example output: ingbray
 * For words beginning with "y" = treat "y" as consonant
-  * ex: yellow = ellowyay
+  * example input: yellow
+  * example output: ellowyay
 * If first consonant include "qu", move "q" and "u" them
-  * ex: quit = itquay
+  * example input: quit
+  * example output: itquay
 
 ## Setup/Installation Requirements
 
