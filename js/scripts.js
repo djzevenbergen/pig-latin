@@ -7,15 +7,27 @@ var vowelStart = function(sent){
 
   sentenceArray.forEach(function(word){
     var pigWord = "";
-    if (vowels.includes(word[0]) === false){
+
+      if (vowels.includes(word[0]) === false){
       var indexC = 0;
       while (vowels.includes(word[indexC]) === false) {
-        
-        indexC++;
+        indexC++;        
       }
-      pigWord = word.slice(indexC);
-      pigWord = pigWord.concat(word.slice(0, indexC) + "ay");
-      pigLatin.push(pigWord);
+      alert(word[indexC]);
+
+      if(word[indexC-1] === "q" && word[indexC] === "u"){
+        alert("q has been encountered");
+        pigWord = word.slice(indexC+1);
+        pigWord = pigWord.concat(word.slice(0, indexC+1) + "ay");
+        pigLatin.push(pigWord);
+      } 
+      
+      
+      else {
+        pigWord = word.slice(indexC);
+        pigWord = pigWord.concat(word.slice(0, indexC) + "ay");
+        pigLatin.push(pigWord);
+      }
     }
     else { //(vowels.includes(word[0])) 
       pigWord = word.concat("way");
