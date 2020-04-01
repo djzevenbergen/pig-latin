@@ -1,6 +1,6 @@
 var vowels = ["a", "e", "i", "o", "u"];
 
-var consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+var consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
 
 var pigLatin = [];
 
@@ -9,31 +9,37 @@ var vowelStart = function(sent){
 
   sentenceArray.forEach(function(word){
     var pigWord = "";
-      if(vowels.includes(word[0]) === false && consonants.includes(word[0]) === false){
+      if(word.charCodeAt([0]) < 65 || (90 < word.charCodeAt([0]) && word.charCodeAt([0]) < 97) || word.charCodeAt([0]) > 122){
         pigLatin.push(word);
+        // handles non-alpha inputs
       }
-      if(word.charCodeAt([0]) < 65 || 90 < word.charCodeAt([0]) < 97 || word.charCodeAt([0]) > 122){
-        pigLatin.push(word);
-      }
-      // all letters ===  65-90 & 97-122
+      
       else if (vowels.includes(word[0]) === false){
         var indexC = 0;
-      while (vowels.includes(word[indexC]) === false) {
-        indexC++;        
-      }      
-        if(word[indexC-1] === "q" && word[indexC] === "u"){
-        pigWord = word.slice(indexC+1);
-        pigWord = pigWord.concat(word.slice(0, indexC+1) + "ay");
-        pigLatin.push(pigWord);
-      } else {
-        pigWord = word.slice(indexC);
-        pigWord = pigWord.concat(word.slice(0, indexC) + "ay");
-        pigLatin.push(pigWord);
+          for (var i = 0; i < word.length; i++) {
+            if (vowels.includes(word[indexC]) === false) {
+              indexC++;
+            }
+          }
+      
+          if(word[indexC-1] === "q" && word[indexC] === "u"){
+          pigWord = word.slice(indexC+1);
+          pigWord = pigWord.concat(word.slice(0, indexC+1) + "ay");
+          pigLatin.push(pigWord);
+          //if one of those consonants is q, makes sure u travels with it
+          } 
+        
+          else {
+          pigWord = word.slice(indexC);
+          pigWord = pigWord.concat(word.slice(0, indexC) + "ay");
+          pigLatin.push(pigWord);
+          //pigifies words beginning in consonants
+          }
       }
-    }
-    else { 
+    else {
       pigWord = word.concat("way");
       pigLatin.push(pigWord);  
+      //pigifies words beginning in vowels
     }    
   });
 
@@ -52,12 +58,6 @@ $(document).ready(function () {
     window.location.reload();
 
     var userSentence = $("#input").val();
-    alert(vowelStart(userSentence));
-
-    
-
-
+    alert(vowelStart(userSentence));    
   });
-
-
 });
